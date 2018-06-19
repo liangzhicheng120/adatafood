@@ -4,6 +4,7 @@ import com.adatafood.product.bean.ProductCategory;
 import com.adatafood.product.bean.ProductInfo;
 import com.adatafood.product.service.ProductCategoryService;
 import com.adatafood.product.service.ProductService;
+import com.adatafood.product.vo.ProductInfoVO;
 import com.adatafood.product.vo.ProductVO;
 import com.adatafood.product.vo.WebResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,10 +38,14 @@ public class ProductController {
     @GetMapping("/list")
     public WebResultVO list() {
         List<ProductInfo> productInfoList = productService.findUpAll();
-        List<Integer> productCategory = productInfoList.stream().map(ProductInfo::getCategoryType).collect(Collectors.toList());
-        List<ProductCategory> productCategoryList = productCategoryService.findAllByCategoryTypeIn(productCategory);
+        List<Integer> productCategoryIds = productInfoList.stream().map(ProductInfo::getCategoryType).collect(Collectors.toList());
+        List<ProductCategory> productCategoryList = productCategoryService.findAllByCategoryTypeIn(productCategoryIds);
         List<ProductVO> productVOList = new ArrayList<>();
-        return new WebResultVO(productCategoryList);
+        for (ProductCategory productCategory : productCategoryList) {
+            ProductVO productVO = ProductVO.build(productInfoList, productCategory);
+            productVOList.add(productVO);
+        }
+        return new WebResultVO(productVOList);
     }
 
 }

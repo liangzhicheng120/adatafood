@@ -1,5 +1,6 @@
 package com.adatafood.product.vo;
 
+import com.adatafood.product.bean.ProductInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
@@ -31,4 +32,14 @@ public class ProductInfoVO {
 
     @JsonProperty("icon")
     private String productIcon;
+
+    public static ProductInfoVO build(ProductInfo productInfo) {
+        ProductInfoVO productInfoVO = new ProductInfoVO();
+        productInfoVO.setProductDescription(productInfo.getProductDescription());
+        productInfoVO.setProductIcon(productInfo.getProductIcon());
+        productInfoVO.setProductId(productInfo.getProductId());
+        productInfoVO.setProductName(productInfo.getProductName());
+        productInfoVO.setProductPrice(productInfo.getProductPrice());
+        return productInfoVO;
+    }
 }

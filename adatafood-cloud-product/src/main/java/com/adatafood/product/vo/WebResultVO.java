@@ -31,9 +31,6 @@ public class WebResultVO {
      */
     private String redirect = "";
 
-    public WebResultVO() {
-    }
-
     public WebResultVO(Object value) {
         this.value = value;
     }
