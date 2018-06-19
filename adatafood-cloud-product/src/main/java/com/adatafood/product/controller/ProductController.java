@@ -7,6 +7,7 @@ import com.adatafood.product.service.ProductService;
 import com.adatafood.product.vo.ProductInfoVO;
 import com.adatafood.product.vo.ProductVO;
 import com.adatafood.product.vo.WebResultVO;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +36,7 @@ public class ProductController {
     @Autowired
     private ProductCategoryService productCategoryService;
 
+    @ApiOperation(value = "获取上架商品列表")
     @GetMapping("/list")
     public WebResultVO list() {
         List<ProductInfo> productInfoList = productService.findUpAll();
