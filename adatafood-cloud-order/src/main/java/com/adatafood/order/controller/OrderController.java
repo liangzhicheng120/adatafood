@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.jws.WebResult;
 import javax.validation.Valid;
 
 /**
@@ -27,7 +26,7 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/order")
 @Slf4j
-public class OrderControoler {
+public class OrderController {
 
     @Autowired
     private OrderService orderService;
