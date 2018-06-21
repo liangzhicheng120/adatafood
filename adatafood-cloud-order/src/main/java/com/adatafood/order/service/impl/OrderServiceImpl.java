@@ -1,6 +1,7 @@
 package com.adatafood.order.service.impl;
 
 import com.adatafood.order.bean.Order;
+import com.adatafood.order.bean.OrderDetail;
 import com.adatafood.order.bean.OrderMaster;
 import com.adatafood.order.dao.OrderDetailDao;
 import com.adatafood.order.dao.OrderMasterDao;
@@ -13,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author liangzhicheng https://github.com/liangzhicheng120
@@ -36,6 +39,11 @@ public class OrderServiceImpl implements OrderService {
     public Order create(Order order) {
         // 订单入库
         String orderId = KeyUtil.genUniqueKey();
+
+        // 查询商品信息
+        List<String> productList = order.getOrderDetailList().stream()
+                .map(OrderDetail::getProductId)
+                .collect(Collectors.toList());
         OrderMaster orderMaster = new OrderMaster();
         order.setOrderId(orderId);
         BeanUtils.copyProperties(order, orderMaster);
