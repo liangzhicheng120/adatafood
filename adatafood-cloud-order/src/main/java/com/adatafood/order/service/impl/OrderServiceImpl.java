@@ -1,7 +1,18 @@
 package com.adatafood.order.service.impl;
 
+import com.adatafood.order.bean.Order;
+import com.adatafood.order.bean.OrderMaster;
+import com.adatafood.order.dao.OrderDetailDao;
+import com.adatafood.order.dao.OrderMasterDao;
+import com.adatafood.order.enums.OrderStatusEnum;
+import com.adatafood.order.enums.PayStatusEnum;
 import com.adatafood.order.service.OrderService;
+import com.adatafood.order.util.KeyUtil;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
 
 /**
  * @author liangzhicheng https://github.com/liangzhicheng120
@@ -15,4 +26,23 @@ import org.springframework.stereotype.Service;
 @Service
 public class OrderServiceImpl implements OrderService {
 
+    @Autowired
+    private OrderDetailDao orderDetailDao;
+
+    @Autowired
+    private OrderMasterDao orderMasterDao;
+
+    @Override
+    public Order create(Order order) {
+        // 订单入库
+        String orderId = KeyUtil.genUniqueKey();
+        OrderMaster orderMaster = new OrderMaster();
+        order.setOrderId(orderId);
+        BeanUtils.copyProperties(order, orderMaster);
+        orderMaster.setOrderAmount(new BigDecimal(5));
+        orderMaster.setOrderStatus(OrderStatusEnum.NEW.getCode());
+        orderMaster.setPayStatus(PayStatusEnum.WAIT.getCode());
+        orderMasterDao.save(orderMaster);
+        return order;
+    }
 }
