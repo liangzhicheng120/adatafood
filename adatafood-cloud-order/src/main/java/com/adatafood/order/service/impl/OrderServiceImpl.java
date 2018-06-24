@@ -35,15 +35,18 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderMasterDao orderMasterDao;
 
+//    @Autowired
+//    private ProductClient productClient;
+
     @Override
     public Order create(Order order) {
         // 订单入库
         String orderId = KeyUtil.genUniqueKey();
-
         // 查询商品信息
         List<String> productList = order.getOrderDetailList().stream()
                 .map(OrderDetail::getProductId)
                 .collect(Collectors.toList());
+
         OrderMaster orderMaster = new OrderMaster();
         order.setOrderId(orderId);
         BeanUtils.copyProperties(order, orderMaster);
