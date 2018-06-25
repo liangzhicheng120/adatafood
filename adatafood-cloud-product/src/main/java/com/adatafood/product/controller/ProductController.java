@@ -10,6 +10,7 @@ import com.adatafood.product.vo.WebResultVO;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -48,5 +49,12 @@ public class ProductController {
             productVOList.add(productVO);
         }
         return new WebResultVO(productVOList);
+    }
+
+    @ApiOperation(value = "获取商品列表")
+    @GetMapping("/order/list")
+    public WebResultVO listForOrder(@RequestBody List<String> productList) {
+        List<ProductInfo> productInfoList = productService.findList(productList);
+        return new WebResultVO(productInfoList);
     }
 }

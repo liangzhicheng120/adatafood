@@ -43,12 +43,12 @@ public class OrderServiceImpl implements OrderService {
     public Order create(Order order) {
         // 订单入库
         String orderId = KeyUtil.genUniqueKey();
-        // 查询商品信息
+//         查询商品信息
         List<String> productList = order.getOrderDetailList().stream()
                 .map(OrderDetail::getProductId)
                 .collect(Collectors.toList());
 
-        // 计算总价
+//         计算总价
         BigDecimal orderAmout = new BigDecimal(BigInteger.ZERO);
 //        for (OrderDetail orderDetail : order.getOrderDetailList()) {
 //            for (ProductInfo productInfo : productList) {

@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.stereotype.Component;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -34,5 +35,10 @@ public class ProductInfoDaoTest extends ProductApplicationTests {
         Assert.assertTrue(productInfoList.size() > 0);
     }
 
+    @Test
+    public void findByProductIdIn() throws Exception {
+        List<ProductInfo> productInfoList = productInfoDao.findByProductIdIn(Arrays.asList("157875227953464068", "164103465734242707"));
+        Assert.assertTrue(productInfoList.size() > 0);
+    }
 
 }

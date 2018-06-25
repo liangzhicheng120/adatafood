@@ -13,47 +13,58 @@ import java.util.Date;
  * @Project: ${project_name}
  * @Title: ${file_name}
  * @Package ${package_name}
- * @Description: 订单信息
+ * @Description: 商品信息
  * @date ${date} ${time}
  */
 @Data
 @Entity
-public class OrderDetail {
+public class ProductInfo {
     /**
-     * 订单信息id
+     * id
      */
     @Id
-    private String detailId;
-    /**
-     * 订单id
-     */
-    private String orderId;
-    /**
-     * 商品id
-     */
     private String productId;
+
     /**
      * 商品名称
      */
     private String productName;
+
     /**
-     * 当前价格,单位分
+     * 商品价格
      */
     private BigDecimal productPrice;
+
     /**
-     * 数量
+     * 库存
      */
-    private Integer productQuantity;
+    private Integer productStock;
+    /**
+     * 商品描述
+     */
+    private String productDescription;
+
     /**
      * 小图
      */
     private String productIcon;
+
+    /**
+     * 状态 0 上架 1 下架
+     */
+    private Integer productStatus;
+    /**
+     * 类目编号
+     */
+    private Integer categoryType;
+
     /**
      * 创建时间
      */
     private Date createTime;
+
     /**
-     * 修改时间
+     * 更新时间
      */
     private Date updateTime;
 }

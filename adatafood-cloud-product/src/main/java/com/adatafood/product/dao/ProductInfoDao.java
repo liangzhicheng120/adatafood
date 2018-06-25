@@ -15,5 +15,19 @@ import java.util.List;
  * @date ${date} ${time}
  */
 public interface ProductInfoDao extends JpaRepository<ProductInfo, String> {
+    /**
+     * 获取指定状态商品
+     *
+     * @param productStatus
+     * @return
+     */
     List<ProductInfo> findAllByProductStatus(Integer productStatus);
+
+    /**
+     *
+     * @param productIdList
+     * @return
+     */
+    List<ProductInfo> findByProductIdIn(List<String> productIdList);
+
 }
