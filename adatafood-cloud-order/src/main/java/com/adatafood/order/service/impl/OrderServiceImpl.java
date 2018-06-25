@@ -50,8 +50,10 @@ public class OrderServiceImpl implements OrderService {
 
         // 计算总价
         BigDecimal orderAmout = new BigDecimal(BigInteger.ZERO);
-//        for(OrderDetail orderDetail : order.getOrderDetailList()){
-//            for(ProductI){}
+//        for (OrderDetail orderDetail : order.getOrderDetailList()) {
+//            for (ProductInfo productInfo : productList) {
+//
+//            }
 //        }
         OrderMaster orderMaster = new OrderMaster();
         order.setOrderId(orderId);
