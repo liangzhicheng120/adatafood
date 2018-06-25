@@ -51,6 +51,7 @@ public class OrderController {
             log.error("【创建订单】购物车信息为空");
             throw new OrderException(ResultEnum.CART_EMPTY);
         }
+
         Order result = orderService.create(order);
         Map<String, String> map = new HashMap<>();
         map.put("orderId", result.getOrderId());

@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,6 +48,11 @@ public class OrderServiceImpl implements OrderService {
                 .map(OrderDetail::getProductId)
                 .collect(Collectors.toList());
 
+        // 计算总价
+        BigDecimal orderAmout = new BigDecimal(BigInteger.ZERO);
+//        for(OrderDetail orderDetail : order.getOrderDetailList()){
+//            for(ProductI){}
+//        }
         OrderMaster orderMaster = new OrderMaster();
         order.setOrderId(orderId);
         BeanUtils.copyProperties(order, orderMaster);
