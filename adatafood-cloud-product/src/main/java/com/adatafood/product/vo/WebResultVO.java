@@ -34,5 +34,8 @@ public class WebResultVO {
     public WebResultVO(Object value) {
         this.value = value;
     }
+
+    public WebResultVO() {
+    }
 }
 

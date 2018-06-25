@@ -1,5 +1,6 @@
 package com.adatafood.product.controller;
 
+import com.adatafood.product.bean.Cart;
 import com.adatafood.product.bean.ProductCategory;
 import com.adatafood.product.bean.ProductInfo;
 import com.adatafood.product.service.ProductCategoryService;
@@ -9,10 +10,7 @@ import com.adatafood.product.vo.ProductVO;
 import com.adatafood.product.vo.WebResultVO;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,9 +50,15 @@ public class ProductController {
     }
 
     @ApiOperation(value = "获取商品列表")
-    @GetMapping("/order/list")
+    @PostMapping("/order/list")
     public WebResultVO listForOrder(@RequestBody List<String> productList) {
         List<ProductInfo> productInfoList = productService.findList(productList);
         return new WebResultVO(productInfoList);
+    }
+
+    @PostMapping("/decrease/stock")
+    public WebResultVO decreaseStock(List<Cart> cartList) {
+        productService.decreaseStock(cartList);
+        return new WebResultVO();
     }
 }

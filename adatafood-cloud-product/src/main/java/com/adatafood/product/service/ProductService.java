@@ -1,5 +1,6 @@
 package com.adatafood.product.service;
 
+import com.adatafood.product.bean.Cart;
 import com.adatafood.product.bean.ProductInfo;
 
 import java.util.List;
@@ -24,4 +25,8 @@ public interface ProductService {
      */
     List<ProductInfo> findList(List<String> productIdList);
 
+    /**
+     * 扣库存
+     */
+    void decreaseStock(List<Cart> cartList);
 }

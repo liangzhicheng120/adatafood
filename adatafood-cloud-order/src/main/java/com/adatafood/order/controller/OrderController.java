@@ -1,5 +1,6 @@
 package com.adatafood.order.controller;
 
+import com.adatafood.order.bean.Cart;
 import com.adatafood.order.bean.Order;
 import com.adatafood.order.enums.ResultEnum;
 import com.adatafood.order.exception.OrderException;
@@ -13,13 +14,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -64,5 +63,10 @@ public class OrderController {
         return productService.list();
     }
 
+    @ApiOperation(value = "扣库存")
+    @PostMapping("/decrease/stock")
+    public WebResultVO decreaseStock(@RequestBody List<Cart> cartList) {
+        return productService.decreaseStock(cartList);
+    }
 
 }
