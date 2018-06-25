@@ -5,6 +5,7 @@ import com.adatafood.order.enums.ResultEnum;
 import com.adatafood.order.exception.OrderException;
 import com.adatafood.order.param.OrderParam;
 import com.adatafood.order.service.OrderService;
+import com.adatafood.order.service.ProductService;
 import com.adatafood.order.util.CheckUtil;
 import com.adatafood.order.vo.WebResultVO;
 import io.swagger.annotations.ApiOperation;
@@ -12,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,6 +39,9 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
+    @Autowired
+    private ProductService productService;
+
     @ApiOperation(value = "消费")
     @PostMapping("/create")
     public WebResultVO create(@Valid OrderParam orderParam, BindingResult bindingResult) {
@@ -50,6 +55,12 @@ public class OrderController {
         Map<String, String> map = new HashMap<>();
         map.put("orderId", result.getOrderId());
         return new WebResultVO(map);
+    }
+
+    @ApiOperation(value = "获取上架商品列表")
+    @GetMapping("/list")
+    public WebResultVO list() {
+        return productService.list();
     }
 
 }

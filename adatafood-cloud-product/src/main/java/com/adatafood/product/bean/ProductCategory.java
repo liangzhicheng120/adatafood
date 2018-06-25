@@ -1,6 +1,7 @@
 package com.adatafood.product.bean;
 
 import lombok.Data;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -38,5 +39,4 @@ public class ProductCategory {
      * 更新时间
      */
     private Date updateTime;
-
 }
