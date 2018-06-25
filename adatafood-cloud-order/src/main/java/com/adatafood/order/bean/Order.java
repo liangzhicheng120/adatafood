@@ -3,8 +3,8 @@ package com.adatafood.order.bean;
 import com.adatafood.order.enums.ResultEnum;
 import com.adatafood.order.exception.OrderException;
 import com.adatafood.order.param.OrderParam;
+import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
