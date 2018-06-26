@@ -22,22 +22,22 @@ import java.util.List;
 public interface ProductClient {
 
     @PostMapping("/order/list")
-    List<ProductInfoOutput> listForOrder(@RequestBody List<String> productIdList);
+    List<ProductInfoVO> listForOrder(@RequestBody List<String> productIdList);
 
 
     @PostMapping("/decrease/stock")
-    void decreaseStock(@RequestBody List<DecreaseStockInput> decreaseStockInputList);
+    void decreaseStock(@RequestBody List<DecreaseStockParam> decreaseStockInputList);
 
     @Component
     class ProductClientFallback implements ProductClient {
 
         @Override
-        public List<ProductInfoOutput> listForOrder(List<String> productIdList) {
+        public List<ProductInfoVO> listForOrder(List<String> productIdList) {
             return null;
         }
 
         @Override
-        public void decreaseStock(List<DecreaseStockInput> decreaseStockInputList) {
+        public void decreaseStock(List<DecreaseStockParam> decreaseStockInputList) {
 
         }
     }
