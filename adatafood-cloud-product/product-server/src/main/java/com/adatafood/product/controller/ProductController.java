@@ -5,7 +5,6 @@ import com.adatafood.product.bean.ProductCategory;
 import com.adatafood.product.bean.ProductInfo;
 import com.adatafood.product.service.ProductCategoryService;
 import com.adatafood.product.service.ProductService;
-import com.adatafood.product.vo.ProductInfoVO;
 import com.adatafood.product.vo.ProductVO;
 import com.adatafood.product.vo.WebResultVO;
 import io.swagger.annotations.ApiOperation;
@@ -56,6 +55,8 @@ public class ProductController {
         return new WebResultVO(productInfoList);
     }
 
+
+    @ApiOperation(value = "扣库存")
     @PostMapping("/decrease/stock")
     public WebResultVO decreaseStock(List<Cart> cartList) {
         productService.decreaseStock(cartList);

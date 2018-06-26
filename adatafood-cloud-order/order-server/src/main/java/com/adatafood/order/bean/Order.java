@@ -77,7 +77,6 @@ public class Order {
         try {
             orderDetailList = gson.fromJson(orderParam.getItems(), new TypeToken<List<OrderDetail>>() {
             }.getType());
-
         } catch (Exception e) {
             log.error("【json转换】错误, string={}", orderParam.getItems());
             throw new OrderException(ResultEnum.PARAM_ERROR);

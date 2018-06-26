@@ -3,7 +3,6 @@ package com.adatafood.product.service.impl;
 import com.adatafood.product.ProductApplicationTests;
 import com.adatafood.product.bean.ProductCategory;
 import com.adatafood.product.service.ProductCategoryService;
-import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
