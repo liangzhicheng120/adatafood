@@ -1,0 +1,25 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/util
+    http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!-- 竞价处理线程池 -->
+    <bean id="biddingThreadpool" class="org.springframework.scheduling.concurrent.ThreadPoolExecutorFactoryBean">
+        <property name="corePoolSize" value="128"/>
+        <property name="maxPoolSize" value="4096"/>
+    </bean>
+
+    <util:list id="testServiceHandler" value-type="com.adatafood.client.service.HandlerService">
+        <!-- 测试处理器 -->
+        <ref bean="testHandler"/>
+        <!-- 处理器 -->
+        <ref bean="afterHandler"/>
+        <!-- 日志上报处理器 -->
+        <ref bean="logHandler"/>
+    </util:list>
+
+</beans>
+
